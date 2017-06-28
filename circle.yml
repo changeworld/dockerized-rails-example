@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    working_directory: /home/circleci/dockerized-rails-example
+    docker:
+      - image: ruby:2.4.1
+        environment:
+          DATABASE_URL: postgres://postgres:@localhost
+      - image: postgres:9.6
+    steps:
+      - run:
+          name: Install System Dependencies
+          command: apt-get update && apt-get install -y --no-install-recommends postgresql-client
+      - checkout
+      - restore_cache:
+          name: Restore bundler cache
+          keys:
+            - gems-{{ checksum "Gemfile.lock" }}
+            - gems-
+      - run:
+          name: Install Rails Dependencies
+          command: |
+            bundle check || bundle install --jobs=4 --retry=3
+            bundle clean
+      - save_cache:
+          name: Save bundler cache
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - /usr/local/bundle
+      - run:
+          name: Create DB
+          command: rake db:create
