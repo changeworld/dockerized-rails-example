@@ -11,12 +11,12 @@ services:
       - "3000:3000"
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     depends_on:
-      - db
+      - postgres
     volumes:
       - .:${PWD}
     environment:
       - DATABASE_URL=postgres://postgres:@postgres
-  db:
+  postgres:
     image: postgres:9.6
     ports:
       - "5432:5432"
