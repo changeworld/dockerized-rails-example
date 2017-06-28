@@ -6,6 +6,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ARG APP_HOME
+ARG BUNDLE_JOBS=2
 
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
