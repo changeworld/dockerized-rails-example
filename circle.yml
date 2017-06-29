@@ -20,3 +20,6 @@ jobs:
       - run:
           name: Create DB
           command: bundle exec rake db:create
+      - run:
+          name: RSpec
+          command: bundle exec rspec
