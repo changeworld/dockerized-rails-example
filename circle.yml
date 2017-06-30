@@ -19,7 +19,7 @@ jobs:
             bundle clean
       - run:
           name: Create DB
-          command: bundle exec rake db:create
+          command: bundle exec rails db:create
       - run:
           name: RSpec
           command: bundle exec rspec
