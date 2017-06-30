@@ -2,6 +2,7 @@ version: 2
 jobs:
   build:
     working_directory: /home/circleci/dockerized-rails-example
+    parallelism: 2
     docker:
       - image: ruby:2.4.1
         environment:
@@ -19,7 +20,10 @@ jobs:
             bundle clean
       - run:
           name: Create DB
-          command: bundle exec rails db:create
+          command: |
+            bundle exec rails db:create
       - run:
           name: RSpec
-          command: bundle exec rspec
+          command: |
+            bundle exec rspec --profile 10 \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
