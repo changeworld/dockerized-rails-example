@@ -1,12 +1,11 @@
 FROM ruby:2.4.1
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
 
 ARG APP_HOME
-ARG BUNDLE_JOBS=2
+ARG BUNDLE_JOBS=4
 
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
