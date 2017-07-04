@@ -13,11 +13,24 @@ jobs:
           name: Install System Dependencies
           command: apt-get update && apt-get install -y --no-install-recommends postgresql-client
       - checkout
+      - restore_cache:
+          keys:
+            - dockerized-rails-example-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - dockerized-rails-example-{{ checksum "Gemfile.lock" }}
+            - dockerized-rails-example-
       - run:
           name: Install Rails Dependencies
           command: |
-            bundle check || bundle install --jobs=4 --retry=3
+            bundle check || bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle clean
+      - save_cache:
+          key: dockerized-rails-example-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - save_cache:
+          key: dockerized-rails-example-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Create DB
           command: |
