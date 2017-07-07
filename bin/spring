@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+# Spring command wrapper for spring container loaded on docker-compose
+docker-compose run spring spring $@
