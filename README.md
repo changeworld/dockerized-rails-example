@@ -31,13 +31,13 @@ $ docker-compose up
 ### Run rails console via Spring
 
 ```bash
-$ docker-compose run spring spring rails c
+$ bin/spring rails c
 ```
 
-### Run rake task via Spring
+### Run rails task via Spring
 
 ```bash
-$ docker-compose run spring spring rails db:migrate
+$ bin/spring rails db:migrate
 ```
 
 ## License
