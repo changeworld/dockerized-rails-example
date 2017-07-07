@@ -12,20 +12,19 @@ An example for a dockerized rails application.
 ### Build images
 
 ```bash
-$ docker-compose build
+$ make build
 ```
 
 ### Setup
 
 ```bash
-$ docker-compose up -d
-$ docker-compose run web rails db:create
+$ make setup
 ```
 
 ### Run services
 
 ```bash
-$ docker-compose up
+$ make up
 ```
 
 ### Run rails console via Spring
