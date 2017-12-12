@@ -1,5 +1,7 @@
 # dockerized-rails-example
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 An example for a dockerized rails application.
 
 ## Requirements
