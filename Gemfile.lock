@@ -101,7 +101,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
     public_suffix (3.0.1)
-    puma (3.9.1)
+    puma (3.11.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -203,7 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capybara
+  capybara (~> 2.13)
   coffee-rails (~> 4.2)
   factory_girl_rails
   jbuilder (~> 2.5)
